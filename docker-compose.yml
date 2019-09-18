@@ -1,0 +1,62 @@
+version: '3.7'
+services:
+    db:
+        image: "mysql:5.7"
+        container_name: "db"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PWD}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PWD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+        ports:
+            - "4784:3306"
+        volumes:
+            - /etc/localtime:/etc/localtime
+            - /etc/timezone:/etc/timezone
+        networks: 
+            graphite_net:
+                ipv4_address: 172.22.0.13     
+    memcached:
+        image: "memcached"
+        ports:
+             - "11211:11211"
+        container_name: "memcached"
+        networks:
+            graphite_net:
+                ipv4_address: 172.22.0.83
+    blogdb:
+        image: "mysql:5.7"
+        container_name: "blogdb"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_BLOG_ROOT_PWD}
+            MYSQL_USER: ${MYSQL_BLOG_USER}
+            MYSQL_PASSWORD: ${MYSQL_BLOG_PWD}
+            MYSQL_DATABASE: ${MYSQL_BLOG_DATABASE}
+        ports:
+            - "4788:3306"
+        networks:
+            graphite_net:
+                ipv4_address: 172.22.0.33
+
+    graphite:
+        build: ./graphite
+        container_name: "graphite"
+        ports:
+            - "80:80"
+            - "8000:8000"
+        volumes:
+            - gfiles:/var/www/files
+            - /var/www/html/graphite:/var/www/html      
+        networks: 
+            graphite_net:
+                ipv4_address: 172.22.0.23
+        depends_on:
+            - db       
+            - memcached
+networks:
+    graphite_net:
+        ipam:
+            config:
+                - subnet: 172.22.0.0/16
+volumes:
+    gfiles:

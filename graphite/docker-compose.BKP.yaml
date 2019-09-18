@@ -1,0 +1,49 @@
+version: '3'
+services:
+    db:
+        image: "mysql:5.7"
+        container_name: "db"
+        volumes:
+            - ../dbdata/:/var/lib/mysql
+            - ./db/my.cnf:/etc/mysql/conf.d/sh.my.cnf
+            - ./db/sslCerts:/etc/mysql/sslCerts
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PWD}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PWD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+        ports:
+            - "4784:3306"
+        networks: 
+            graphite_net:
+                ipv4_address: 172.22.0.13                
+
+    graphite:
+        build: ./graphite
+        container_name: "graphite"
+        volumes:
+            - ${GRAPHITE_CODE}:/var/www/html
+            - ${GRAPHITE_CODE}/../files:/var/www/files
+            - ./graphite/shapp.yaml:/etc/shapp.yaml
+            - ../logs/graphite:/var/log/graphite
+            - ./graphite/graphite.bashrc:/root/.bashrc
+            - ./graphite/graphite.vimrc:/root/.vimrc
+            - ./graphite/network:/etc/sysconfig/network
+            - ./graphite/fpm.conf:/etc/php-fpm-7.1.d/www.conf
+            - ./graphite/php7.1-fpm.conf:/etc/httpd/conf.d/php-fpm-7.1.
+            - ./graphite/php7.1.ini:/etc/php-7.1.conf/php.ini
+            - ./graphite/memcached:/etc/sysconfig/memcached            
+        ports:
+            - "80:80"
+            - "8000:8000"
+        networks: 
+            graphite_net:
+                ipv4_address: 172.22.0.23
+        depends_on:
+            - db
+networks:
+    graphite_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.22.0.0/16
