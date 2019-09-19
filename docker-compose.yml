@@ -1,29 +1,26 @@
 version: '3.7'
 services:
-    db:
-        image: "mysql:5.7"
-        container_name: "db"
-        environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PWD}
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PWD}
-            MYSQL_DATABASE: ${MYSQL_DATABASE}
+    db:        
+        build: ./db
+        container_name: "db"                    
         ports:
-            - "4784:3306"
-        volumes:
-            - /etc/localtime:/etc/localtime
-            - /etc/timezone:/etc/timezone
+            - "${MYSQL_MAPPED_PORT}:3306"    
         networks: 
-            graphite_net:
-                ipv4_address: 172.22.0.13     
+            graphite_net:  
     memcached:
         image: "memcached"
-        ports:
-             - "11211:11211"
         container_name: "memcached"
+        ports:
+             - "${MEMCACHED_MAPPED_PORT}:11211"
         networks:
             graphite_net:
-                ipv4_address: 172.22.0.83
+    composer:
+        image: "composer"
+        container_name: "composer"
+        volumes:
+            - ${GRAPHITE_CODE}:/var/www/html      
+        networks:
+            graphite_net:
     blogdb:
         image: "mysql:5.7"
         container_name: "blogdb"
@@ -33,30 +30,37 @@ services:
             MYSQL_PASSWORD: ${MYSQL_BLOG_PWD}
             MYSQL_DATABASE: ${MYSQL_BLOG_DATABASE}
         ports:
-            - "4788:3306"
+            - "${MYSQL_BLOG_MAPPED_PORT}:3306"
         networks:
             graphite_net:
-                ipv4_address: 172.22.0.33
-
-    graphite:
-        build: ./graphite
-        container_name: "graphite"
-        ports:
-            - "80:80"
-            - "8000:8000"
-        volumes:
-            - gfiles:/var/www/files
-            - /var/www/html/graphite:/var/www/html      
+    
+    php:
+        build: ./php  
+        container_name: "php"              
         networks: 
             graphite_net:
-                ipv4_address: 172.22.0.23
+        ports: 
+            - "${FPM_MAPPED_PORT}:8000"
+            - "${XDEBUG_MAPPED_PORT}:9000"
+        volumes:
+            - gfiles:/var/www/files
+            - ${GRAPHITE_CODE}:/var/www/html
+    apache:
+        build: ./apache
+        container_name: "apache"         
+        ports:
+            - "8080:80"      
+            - "8000:8000"      
+        volumes:
+            - gfiles:/var/www/files
+            - ${GRAPHITE_CODE}:/var/www/html      
+        networks: 
+            graphite_net:
         depends_on:
             - db       
-            - memcached
+            - php
+            - memcached      
 networks:
-    graphite_net:
-        ipam:
-            config:
-                - subnet: 172.22.0.0/16
+    graphite_net:        
 volumes:
     gfiles:

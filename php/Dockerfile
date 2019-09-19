@@ -12,7 +12,6 @@ FROM amazonlinux:2018.03.0.20190514
 ENV WEBROOT /var/www/html
 
 # Base tools
-RUN yum install wget which vim -y
 RUN yum update -y
 
 # Installing php 7.1
@@ -29,19 +28,11 @@ RUN yum install php71 \
                 php71-fpm \         
                 php71-pecl-imagick -y
 
-# Apache Install and configuration
-RUN yum install httpd24 httpd24-tools mod24_ssl mod24_fcgi nc -y
-
 # Copy general config files to the container
-COPY ./httpd.shdev.conf /etc/httpd/conf.d/httpd.shdev.conf
 COPY ./graphite.yaml /etc/shapp.yaml
-COPY ./.bashrc /root/.bashrc
-COPY ./graphite.vimrc /root/.vimrc
-COPY ./network /etc/sysconfig/network
 COPY ./www.conf /etc/php-fpm-7.1.d/www.conf
-COPY ./php7.1-fpm.conf /etc/httpd/conf.d/php-fpm-7.1.conf
-COPY ./php7.1.ini /etc/php-7.1.conf/php.ini
-COPY ./composer.phar /usr/local/bin/composer
+COPY ./network /etc/sysconfig/network
+COPY ./xdebug.ini /etc/php-7.1.conf/xdebug.ini
 
 # Logging
 RUN mkdir /var/log/graphite 
@@ -67,6 +58,6 @@ RUN chmod 777 -R runtime
 WORKDIR /var/www/html
 
 # Open ports for apache, xdebug
-EXPOSE 80 8000 9000
+EXPOSE 8000 9000
 
-ENTRYPOINT ["apachectl", "-DFOREGROUND"]
+ENTRYPOINT php-fpm-7.1 --nodaemonize
