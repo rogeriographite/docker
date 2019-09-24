@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev libmagickwa
     && docker-php-ext-enable xdebug memcached imagick 
 
 # Copy general config files to the container
-COPY ./graphite.example.yaml /etc/shapp.yaml
+COPY ./graphite.yaml /etc/shapp.yaml
 COPY ./xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Logging
