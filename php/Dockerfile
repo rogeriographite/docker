@@ -14,7 +14,7 @@ ENV WEBROOT /var/www/html
 RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev libmagickwand-dev \    
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
     && docker-php-ext-configure mysqli --with-mysqli=mysqlnd \
-    && docker-php-ext-install mysqli pdo pdo_mysql gd bcmath jsonc \
+    && docker-php-ext-install mysqli pdo pdo_mysql gd bcmath \
     && pecl install memcached xdebug imagick \
     && docker-php-ext-enable xdebug memcached imagick 
 
