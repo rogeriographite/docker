@@ -18,6 +18,6 @@ RUN yum install httpd24 httpd24-tools mod24_ssl mod24_fcgi nc -y
 COPY ./apache.conf /etc/httpd/conf.d/apache.conf
 
 # Open ports for apache
-EXPOSE 80 8000
+EXPOSE 80
 
 ENTRYPOINT ["apachectl", "-DFOREGROUND"]
