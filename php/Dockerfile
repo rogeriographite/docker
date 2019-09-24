@@ -21,10 +21,19 @@ RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev libmagickwa
 # Copy general config files to the container
 COPY ./graphite.yaml /etc/shapp.yaml
 COPY ./xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+COPY ./root.bashrc /root/.bashrc
 
 # Logging
 RUN mkdir /var/log/graphite 
 RUN chmod 777 -R /var/log/graphite
+
+# Assets and runtime
+WORKDIR /var/www/html
+RUN mkdir assets
+RUN chmod 777 -R assets
+WORKDIR /var/www/html/protected
+RUN mkdir runtime
+RUN chmod 777 -R runtime
 
 # Set dir to open bash in
 WORKDIR /var/www/html

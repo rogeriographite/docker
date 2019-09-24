@@ -13,9 +13,12 @@ WIP readme - assuming existing local environment
   - bcmath, fpm, gd, imagick, memcached, pdo_mysql, xdebug 
 
 
-### Installation steps
+## Installation steps
 - Create `.env` file (.env.example provided)
   - `GRAPHITE_CODE` path to code clone in local machine
   - `*_MAPPED_PORT` custom ports to be used by host (ie.: serve from apache, connecting to mysql) 
 - Create `graphite.yaml` file (graphite.example.yaml provided, notice that mysql, memcached and async settings are already populate with docker-friendly names)
 - Run `docker-compose up -d`
+
+## Testing
+Recommend running `runtests -u` outsite container as it takes considerable less time then within container (known docker lower I/O performance with phpunit)
