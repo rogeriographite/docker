@@ -15,18 +15,19 @@ ENV WEBROOT /var/www/html
 # RUN yum update -y
 
 # Installing php 7.1
-RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev libmagickwand-dev \
-    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql mysqlnd mysqli \
-    && pecl install memcached \
-    && pecl install xdebug \        
-    && pecl install imagick \   
-    && docker-php-ext-enable xdebug memcached imagick
+RUN apt-get update && apt-get install -y libmemcached-dev zlib1g-dev libmagickwand-dev \    
+    && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
+    && docker-php-ext-configure mysqli --with-mysqli=mysqlnd \
+    && docker-php-ext-install mysqli pdo pdo_mysql gd \
+    && pecl install memcached xdebug imagick \
+    && docker-php-ext-enable xdebug memcached imagick 
 
 # Copy general config files to the container
 COPY ./graphite.yaml /etc/shapp.yaml
 #COPY ./www.conf /etc/php-fpm-7.1.d/www.conf
 #COPY ./network /etc/sysconfig/network
 #COPY ./xdebug.ini /etc/php-7.1.conf/xdebug.ini
+COPY ./xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Logging
 RUN mkdir /var/log/graphite 
@@ -51,8 +52,8 @@ RUN chmod 777 -R /var/log/graphite
 # Set dir to open bash in
 WORKDIR /var/www/html
 
-# Open ports for apache, xdebug
-# EXPOSE 8000 9000
+# Open ports for xdebug
+EXPOSE 9001
 
 #CMD ["php-fpm"]
 # ENTRYPOINT [ "entrypoint" ]

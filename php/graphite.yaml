@@ -2,7 +2,7 @@
 # -- Note that commented-out cfg settings mean the setting is optional
 
 # Database Config
-SH_DB_CONNECTION_STRING: 'mysql:host=172.22.0.13;dbname=Graphite'
+SH_DB_CONNECTION_STRING: 'mysql:host=mysql:3306;dbname=Graphite'
 SH_DB_EMULATE_PREPARE: true
 SH_DB_SCHEMA_CACHING_DURATION: '3600'
 SH_DB_USERNAME: 'apache'
@@ -101,7 +101,7 @@ SH_SITE_USE_AWS_FOR_FILE_HANDLING: false
 # SH_CACHE_CLASS: 'CDummyCache'
 SH_CACHE_CLASS: 'CMemCache'
 SH_CACHE_USE_MEMCACHED: true
-SH_CACHE_SERVER_HOST: '172.22.0.83'
+SH_CACHE_SERVER_HOST: 'memcached'
 SH_CACHE_SERVER_PORT: '11211'
 #SH_CACHE_KEY_PREFIX: 'graphiteCache'
 
@@ -166,8 +166,8 @@ SH_REQUEST_SCRIPT_URL: '/index.php'
 # Timezone Config
 SH_APP_TIMEZONE: 'America/New_York'
 
-SH_ASYNC_NETWORK_IP: '172.22.0.23'
-SH_ASYNC_NETWORK_PORT: '8000'
+SH_ASYNC_NETWORK_IP: 'php'
+SH_ASYNC_NETWORK_PORT: '9000'
 
 # Salesforce API Config
 SH_SITE_SF_API_ENABLED: true

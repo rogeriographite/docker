@@ -39,8 +39,10 @@ services:
     php:
         build: ./php  
         container_name: "php"              
+        ports:
+            - "9001:9001"
         networks: 
-            graphite_net:
+            graphite_net:            
         volumes:
             - gfiles:/var/www/files
             - ${GRAPHITE_CODE}:/var/www/html
