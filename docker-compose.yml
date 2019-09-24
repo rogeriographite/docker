@@ -2,14 +2,14 @@ version: '3.7'
 services:
     mysql:        
         build: ./mysql
-        container_name: "mysql"                    
-        ports:
-            - "${MYSQL_MAPPED_PORT}:3306"   
+        container_name: "mysql"                     
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PWD}
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PWD}
-            MYSQL_DATABASE: ${MYSQL_DATABASE}        
+            MYSQL_DATABASE: ${MYSQL_DATABASE}      
+        ports:
+            - "${MYSQL_MAPPED_PORT}:3306"    
         networks: 
             graphite_net:  
     memcached:
@@ -25,7 +25,7 @@ services:
         networks:
             graphite_net:
     blogdb:
-        image: "mysql:5.7"
+        build: ./blogdb        
         container_name: "blogdb"
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_BLOG_ROOT_PWD}
@@ -40,7 +40,7 @@ services:
         build: ./php  
         container_name: "php"              
         ports:
-            - "9001:9001"
+            - "${XDEBUG_MAPPED_PORT}:9001"
         networks: 
             graphite_net:            
         volumes:
@@ -50,7 +50,7 @@ services:
         build: ./apache
         container_name: "apache"         
         ports:
-            - "8080:80"                  
+            - "${WEB_MAPPED_PORT}:80"                  
         volumes:
             - gfiles:/var/www/files
             - ${GRAPHITE_CODE}:/var/www/html      

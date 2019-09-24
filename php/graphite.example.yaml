@@ -1,0 +1,188 @@
+# This is SpareHire environment configuration file
+# -- Note that commented-out cfg settings mean the setting is optional
+
+# Database Config
+SH_DB_CONNECTION_STRING: 'mysql:host=mysql:3306;dbname: [DBNAME]'
+SH_DB_EMULATE_PREPARE: true
+SH_DB_SCHEMA_CACHING_DURATION: false
+SH_DB_USERNAME: '[USERNAME]'
+SH_DB_PASSWORD: '[PASSWORD]'
+SH_DB_CHARSET: 'utf8mb4'
+SH_DB_ENABLE_PARAM_LOGGING: true
+SH_DB_ENABLE_PROFILING: true
+
+# Override mail configurations
+# SH_MAIL_SMTP_HOST: 'smtp.mailtrap.io'
+# SH_MAIL_SMTP_PORT: '2525'
+# SH_MAIL_LOGGING_ENABLED: true
+
+# Dry run mode on will prevent mails from being sent (retuns an int instead of starting mailer's send functionality.
+# Should be set to false on prod. For dev environments should be set to true to prevent errors as localhosts smtp servers are not available
+# (or allow (false) in case using some 3rd party intermediate service like mailtrap.io)
+# SH_MAIL_DRY_RUN_MODE: false
+
+# Optional mail overrides
+# SH_MAIL_SMTP_USERNAME: 'username'
+# SH_MAIL_SMTP_PASSWORD: 'password'
+# SH_MAIL_SMTP_ENCRYPTION: 'tls'
+# SH_MAIL_SMTP_TIMEOUT: 5000
+
+# SASS Configurations
+SH_SITE_SASS_COMPILE_MINIFIED_CSS: true
+
+# Google Analytics Tracking Id (optional)
+# SH_SITE_GOOGLE_ANALYTICS_TRACKING_ID: '[TRACKING_ID]'
+
+# Google Recaptcha config, site key and secret API key
+SH_GOOGLE_RECAPTCHA_ENABLED: false
+SH_GOOGLE_RECAPTCHA_SCORE_CHECK_ENABLED: false
+# SH_GOOGLE_RECAPTCHA_MIN_SCORE: 0.5
+# SH_GOOGLE_RECAPTCHA_SITE_KEY: '[SITE_KEY]'
+# SH_GOOGLE_RECAPTCHA_SECRET_KEY: '[SECRET_KEY]'
+
+# DB SSL connection config (if enabled, must provide all 4 settings for SSL DB connection)
+SH_DB_SSL_ENABLED: false                                  
+# When set to true uncomment and address settings bellow 
+# SH_DB_SSL_CIPHER: '[SSL_CIPHER]'
+# SH_DB_SSL_KEY: '[SSL_KEY]'
+# SH_DB_SSL_CERT: '[SSL_CERT]'
+# SH_DB_SSL_CA: '[SSL_CA]'
+
+# Static asset CDN configuration (optional)
+# SH_CDN_HOST: '[CDN hostname, ie cdn.graphite.com]'
+# SH_CDN_PROTOCOL: '[http/https, defaults to https]'
+# SH_USE_CDN_FOR_STATIC_ASSETS: false
+
+# Site AWS Config
+SH_SITE_USE_AWS_FOR_FILE_HANDLING: false
+# When set to true uncomment and address settings below
+
+# Amazon CloudFront Config
+# SH_AMAZON_CLOUD_FRONT_VERSION: 'latest'
+# SH_AMAZON_CLOUD_FRONT_REGION: 'us-east-1'
+# SH_AMAZON_CLOUD_FRONT_KEY_PAIR_ID: 'AWSKeyPair'
+# SH_AMAZON_CLOUD_FRONT_KEY_PATH: 'www/private/privatekey.pk'
+# SH_AMAZON_CLOUD_FRONT_CDN_HOST: 'cdn.sparehire.com'
+# SH_AMAZON_CLOUD_FRONT_HOST_DOMAIN: 'sparehire.com'
+
+# Amazon S3 Config
+# SH_AMAZON_S3_ACCESS_KEY: 'AWSAccessKey'
+# SH_AMAZON_S3_SECRET_ACCESS_KEY: 'AWSSecretAccessKey'
+# SH_AMAZON_S3_VERSION: 'latest'
+# SH_AMAZON_S3_REGION: 'us-east-1'
+# SH_AMAZON_S3_ACCESS_CONTROL_LIST: 'private'
+# SH_AMAZON_S3_STORAGE_CLASS: 'STANDARD'
+# SH_AMAZON_S3_BUCKET_ID: 'S3BucketId'
+
+# Salesforce API Config
+SH_SITE_SF_API_ENABLED: false
+# When set to true uncomment and address settings below
+# SH_SITE_SF_USERNAME: '[USERNAME]'
+# SH_SITE_SF_PASSWORD: '[PASSWORD]'
+# SH_SITE_SF_CLIENT_ID: '[CLIENT_ID]'
+# SH_SITE_SF_CLIENT_SECRET: '[CLIENT_SECRET]'
+# SH_SITE_SF_GRANT_TYPE: 'password'
+# SH_SITE_SF_LOGIN_URL: 'https://login.salesforce.com/services/oauth2/token''
+
+# Custom Salesforce Record Type Ids
+#SH_SITE_SF_PRO_CONTACT_RECORD_TYPE_ID: '[RECORD_TYPE_ID]'
+
+# Custom Salesforce Dummy Object Record Id's
+SH_SITE_SF_DUMMY_CONTACT_RECORD_ID: '[DUMMY_CONTACT_RECORD_ID]'
+SH_SITE_SF_DUMMY_PROJECT_RECORD_ID: '[DUMMY_PROJECT_RECORD_ID]'
+
+# Google Maps API Config
+SH_GOOGLE_MAPS_SERVER_API_KEY: '[SERVER_API_KEY]'
+SH_GOOGLE_MAPS_CLIENT_API_KEY: '[CLIENT_API_KEY]'
+
+# Cache Config
+# SH_CACHE_CLASS: 'CDummyCache'
+SH_CACHE_CLASS: 'CMemCache'
+SH_CACHE_USE_MEMCACHED: true
+SH_CACHE_SERVER_HOST: 'memcached'
+SH_CACHE_SERVER_PORT: '11211'
+#SH_CACHE_KEY_PREFIX: 'graphiteCache'
+
+# Site Configs
+SH_SITE_ADMIN_EMAIL: 'webmaster@sparehire.com'
+SH_SITE_FROM_EMAIL: 'admin@sparehire.com'
+SH_SITE_HELP_EMAIL: 'help@sparehire.com'
+SH_SITE_INFO_EMAIL: 'info@sparehire.com'
+
+#SH_SITE_FINANCIAL_REPORTING_MAILING_LIST:
+#  - 'email1'
+#  - 'email2'
+#  - '...'
+
+# Feedback BCC Email Address
+# SH_PLATFORM_FEEDBACK_BCC_EMAIL: '[EMAIL_PLACEHOLDER]'
+
+# Site Stripe Config
+SH_STRIPE_API_KEY: '[KEY_PLACEHOLDER]'
+SH_STRIPE_PUBLIC_API_KEY: '[KEY_PLACEHOLDER]'
+SH_STRIPE_API_VERSION: '[API_VERSION]'
+
+# Stripe secret keys for event signature verification
+G_STRIPE_CONNECTED_EVENT_SECRET_KEY: '[KEY_PLACEHOLDER]'
+G_STRIPE_PLATFORM_EVENT_SECRET_KEY: '[KEY_PLACEHOLDER]'
+
+# Stripe Application Config
+SH_SITE_ENVIRONMENT: 'DEV'
+SH_SITE_ENCRYPT_INITIAL_VECTOR: 'staticIV'
+SH_SITE_ENCRYPT_PASSWORD: 'staticPassword'
+SH_SITE_ENCRYPTION_METHOD: 'aes-256-cbc'
+
+# Plaid Link configuration
+SH_PLAID_BANK_ACCOUNT_LINK_ENABLED: false
+# SH_PLAID_BANK_ACCOUNT_LINK_ENV: 'sandbox'
+# SH_PLAID_BANK_ACCOUNT_LINK_PUBLIC_KEY: '[KEY_PLACEHOLDER]'
+# SH_PLAID_BANK_ACCOUNT_LINK_CLIENT_ID: '[ID_PLACEHOLDER]'
+# SH_PLAID_BANK_ACCOUNT_LINK_SECRET_KEY: '[KEY_PLACEHOLDER]'
+# G_PLAID_BANK_ACCOUNT_LINK_LOGGING_ENABLED: false
+
+# Logging configuration
+SH_LOG_LEVEL: 'error'
+
+# Log file config (optional, if omitted app logs to protected/runtime/application.log)
+# SH_LOG_FILE_PATH: '/var/log/webapp'
+
+# Site Payment Config
+SH_SITE_REQUIRE_PAYMENT_ON_MATCH: true
+
+# Automated Payments Enable/Disable toggle
+SH_SITE_AUTOMATED_PAYMENTS_ENABLED: false
+
+# Site Email Relay Config
+SH_SITE_MESSAGE_RELAY_DOMAIN: 'example.sparehire.co'
+
+# Site Customer IO Config
+SH_SITE_USE_CUSTOMER_IO_SITE_ID: '[SITE_ID]'
+SH_SITE_USE_CUSTOMER_IO_API_KEY: '[SITE_ID]'
+
+# Site Linkedin Auto Fill Config
+SH_SITE_LI_AUTO_FILL: false
+
+# Allow sending application emails to actual recipients in test environment
+SH_SITE_SEND_MAILS_TO_RECIPIENTS_IN_TEST_MODE: false
+
+# User Notification Config
+G_SITE_USER_NOTIFICATIONS_ENABLED: false
+
+# Project Proposals Config
+G_PROJECT_PROPOSALS_ENABLED: false
+
+# Social Media Handles
+SH_TWITTER_HANDLE: 'SpareHire'
+
+# PHP FPM Async
+# IP address and port registered in PHP-FPM configuration
+SH_ASYNC_NETWORK_IP: 'php'
+SH_ASYNC_NETWORK_PORT: '9000'
+
+# Request Config - note BASE_URL should NOT be used to store hostname, it's a relative URL on top of the host
+SH_REQUEST_HOST_INFO: '[HOST]'
+SH_REQUEST_BASE_URL: ''
+SH_REQUEST_SCRIPT_URL: '/index.php'
+
+# Timezone Config
+SH_APP_TIMEZONE: 'America/New_York'
