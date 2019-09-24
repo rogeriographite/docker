@@ -3,4 +3,4 @@
 .vscode
 workspace.xml
 graphite-docker.iml
-graphite.yaml
+php/graphite.yaml
