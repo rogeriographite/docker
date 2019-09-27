@@ -41,8 +41,6 @@ services:
     php:
         build: ./php  
         container_name: "php"              
-        ports:
-            - "${XDEBUG_MAPPED_PORT}:9001"
         networks: 
             graphite_net:            
         volumes:
