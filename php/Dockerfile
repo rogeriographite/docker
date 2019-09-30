@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y vim libmemcached-dev libmagickwand-dev\
     && docker-php-ext-install mysqli pdo pdo_mysql gd bcmath \
     && pecl install memcached xdebug imagick \
     && docker-php-ext-enable memcached imagick xdebug \
-    && mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+    && cp "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 # Copy general config files to the container
 COPY ./graphite.yaml /etc/shapp.yaml
