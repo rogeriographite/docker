@@ -9,7 +9,7 @@
 FROM amazonlinux:2018.03.0.20190514
 
 # Base env variables
-ENV WEBROOT /var/www/html
+ENV GRAPHITE_CODE /var/www/html
 
 # Apache Install and configuration
 RUN yum install httpd24 httpd24-tools mod24_ssl mod24_fcgi nc -y

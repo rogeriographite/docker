@@ -8,7 +8,7 @@
 FROM php:7.1-fpm
 
 # Base env variables
-ENV WEBROOT /var/www/html
+ENV GRAPHITE_CODE /var/www/html
 
 # Installing php 7.1
 RUN apt-get update && apt-get install -y vim libmemcached-dev libmagickwand-dev\
@@ -35,6 +35,8 @@ RUN chmod 777 -R assets
 WORKDIR /var/www/html/protected
 RUN mkdir runtime
 RUN chmod 777 -R runtime
+
+
 
 # Set dir to open bash in
 WORKDIR /var/www/html

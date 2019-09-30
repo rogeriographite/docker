@@ -1,9 +1,7 @@
 # Source web application environment
 source /etc/environment
 
-# Web env vars
-export SHCODE=/var/www/html
-
 # PHP unit tests
-alias runtests='$SHCODE/protected/testRunner.php'
-alias syncSchema='$SHCODE/protected/yiic Util Run syncSchema'
+# GRAPHITE_CODE defined in Dockerfile
+alias runtests='$GRAPHITE_CODE/protected/testRunner.php'
+alias syncSchema='$GRAPHITE_CODE/protected/yiic Util Run syncSchema'
