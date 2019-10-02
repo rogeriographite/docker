@@ -22,6 +22,7 @@ RUN yum update -y && yum install -y httpd24 \
                                 php71-pecl-memcached.x86_64 \
                                 php71-pdo.x86_64 \
                                 php71-mysqlnd.x86_64 \
+                                curl \
                                 supervisor
 
 # Installing php 7.1
@@ -71,5 +72,8 @@ RUN yum install python-pip python-wheel -y && \
 
 RUN python get-pip.py --user
 RUN /root/.local/bin/pip install supervisor
+
+
+
 
 CMD ["/entrypoint.sh"]

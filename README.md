@@ -8,16 +8,16 @@ WIP readme - assuming existing local environment
   - Default installation
 - apache
   - fcgi setup
-- php
-  - 7.1
+  - PHP 7.1
   - bcmath, fpm, gd, imagick, memcached, pdo_mysql, xdebug 
-
 
 ## Installation steps
 - Create `.env` file (.env.example provided)
   - `GRAPHITE_CODE` path to code clone in local machine
   - `*_MAPPED_PORT` custom ports to be used by host (ie.: serve from apache, connecting to mysql) 
 - Create `graphite.yaml` file (graphite.example.yaml provided, notice that mysql, memcached and async settings are already populate with docker-friendly names)
+-  
+- docker run --rm --interactive --tty -v $PWD:/app composer install
 - Run `docker-compose up -d`
 
 ## Testing

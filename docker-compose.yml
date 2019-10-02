@@ -11,7 +11,7 @@ services:
         volumes:
             - ${MYSQL_DATA_DIR}:/var/lib/mysql
         ports:
-            - "${MYSQL_MAPPED_PORT}:3306"    
+            - "${MYSQL_MAPPED_PORT}:3306"
         networks: 
             graphite_net:  
     memcached:
@@ -38,7 +38,7 @@ services:
             - "${MYSQL_BLOG_MAPPED_PORT}:3306"
         networks:
             graphite_net:
-    apache:
+    apache-php7fpm:
         build: ./apache
         container_name: "apache"         
         ports:
