@@ -1,0 +1,195 @@
+# This is SpareHire environment configuration file
+# -- Note that commented-out cfg settings mean the setting is optional
+
+# Database Config
+SH_DB_CONNECTION_STRING: 'mysql:host=mysql:3306;dbname=Graphite'
+SH_DB_EMULATE_PREPARE: true
+SH_DB_SCHEMA_CACHING_DURATION: '3600'
+SH_DB_USERNAME: 'root'
+SH_DB_PASSWORD: 'jason123'
+SH_DB_CHARSET: 'utf8'
+SH_DB_ENABLE_PARAM_LOGGING: true
+SH_DB_ENABLE_PROFILING: true
+
+# SH_SITE_MESSAGE_RELAY_DOMAIN: 'testreply2.sparehire.co'
+
+SH_PLAID_BANK_ACCOUNT_LINK_ENABLED: true
+SH_PLAID_BANK_ACCOUNT_LINK_ENV: 'sandbox'
+SH_PLAID_BANK_ACCOUNT_LINK_PUBLIC_KEY: '6a74b4f77583b283d6d132d7a807c3'
+SH_PLAID_BANK_ACCOUNT_LINK_CLIENT_ID: '5c5e04f56b79360011eb2a96'
+SH_PLAID_BANK_ACCOUNT_LINK_SECRET_KEY: '4a413798cb140db0ffdb17d8157ade'
+
+SH_PLATFORM_FEEDBACK_BCC_EMAIL: 'somemail@sparehire.com'
+
+SH_INVOICE_DISPUTES_ENABLED: true
+SH_SITE_AUTOMATED_PAYMENTS_ENABLED: true
+
+# Google Analytics Tracking Id (optional)
+# SH_SITE_GOOGLE_ANALYTICS_TRACKING_ID: '[TRACKING_ID]'
+
+# Override mail configurations
+SH_MAIL_SMTP_HOST: 'smtp.mailtrap.io'
+SH_MAIL_SMTP_PORT: 2525
+SH_MAIL_DRY_RUN_MODE: false
+SH_MAIL_LOGGING_ENABLED: true
+
+# Optional mail overrides
+SH_MAIL_SMTP_USERNAME: '04e25dcf7e8f0b'
+SH_MAIL_SMTP_PASSWORD: 'dce7f1816210e0'
+# SH_MAIL_SMTP_ENCRYPTION: 'tls'
+# SH_MAIL_SMTP_TIMEOUT: 10000
+
+# SASS Configurations
+SH_SITE_SASS_COMPILE_MINIFIED_CSS: true
+
+# Google Recaptcha config, site key and secret API key
+SH_GOOGLE_RECAPTCHA_ENABLED: true
+SH_GOOGLE_RECAPTCHA_SCORE_CHECK_ENABLED: true
+SH_GOOGLE_RECAPTCHA_MIN_SCORE: 0.99
+SH_GOOGLE_RECAPTCHA_SITE_KEY: '6Lf_hW8UAAAAAK-FjZruJ2x3MML16G_NpoJYcQmt'
+SH_GOOGLE_RECAPTCHA_SECRET_KEY: '6Lf_hW8UAAAAACj1lP8iML1PKp5hcQUSaWLhX25Y'
+
+# Google maps API key
+SH_GOOGLE_MAPS_SERVER_API_KEY: 'AIzaSyArRglDwZ9tH_r_o-Xx-PTxutsPz_2ELKs'
+SH_GOOGLE_MAPS_CLIENT_API_KEY: 'AIzaSyArRglDwZ9tH_r_o-Xx-PTxutsPz_2ELKs'
+
+# DB SSL connection config (if enabled, must provide all 4 settings for SSL DB connection)
+SH_DB_SSL_ENABLED: false                                  
+# When set to true uncomment and address settings bellow 
+# SH_DB_SSL_CIPHER: '[SSL_CIPHER]'
+# SH_DB_SSL_KEY: '[SSL_KEY]'
+# SH_DB_SSL_CERT: '[SSL_CERT]'
+# SH_DB_SSL_CA: '[SSL_CA]'
+
+# Static asset CDN configuration (optional, defaults to cdn.sparehire.com if not provided)
+# SH_CDN_ASSET_HOST: '[CDN hostname, ie cdn.sparehire.com]'
+SH_CDN_HOST: 'devmedia.sparehire.com'
+SH_USE_CDN_FOR_STATIC_ASSETS: false
+
+# Site AWS Config
+SH_SITE_USE_AWS_FOR_FILE_HANDLING: false
+# When set to true uncomment and address settings below
+
+# Amazon CloudFront Config
+# SH_AMAZON_CLOUD_FRONT_VERSION: 'latest'
+# SH_AMAZON_CLOUD_FRONT_REGION: 'us-east-1'
+# SH_AMAZON_CLOUD_FRONT_KEY_PAIR_ID: 'AWSKeyPair'
+# SH_AMAZON_CLOUD_FRONT_KEY_PATH: 'www/private/privatekey.pk'
+# SH_AMAZON_CLOUD_FRONT_CDN_HOST: 'cdn.sparehire.com'
+# SH_AMAZON_CLOUD_FRONT_HOST_DOMAIN: 'sparehire.com'
+
+# Amazon S3 Config
+# SH_AMAZON_S3_ACCESS_KEY: 'AWSAccessKey'
+# SH_AMAZON_S3_SECRET_ACCESS_KEY: 'AWSSecretAccessKey'
+# SH_AMAZON_S3_VERSION: 'latest'
+# SH_AMAZON_S3_REGION: 'us-east-1'
+# SH_AMAZON_S3_ACCESS_CONTROL_LIST: 'private'
+# SH_AMAZON_S3_STORAGE_CLASS: 'STANDARD'
+# SH_AMAZON_S3_BUCKET_ID: 'S3BucketId'
+
+# Salesforce API Config
+# SH_SITE_SF_API_ENABLED: false
+# When set to true uncomment and address settings below
+# SH_SITE_SF_USERNAME: '[USERNAME]'
+# SH_SITE_SF_PASSWORD: '[PASSWORD]'
+# SH_SITE_SF_CLIENT_ID: '[CLIENT_ID]'
+# SH_SITE_SF_CLIENT_SECRET: '[CLIENT_SECRET]'
+# SH_SITE_SF_GRANT_TYPE: 'password'
+# SH_SITE_SF_LOGIN_URL: 'https://login.salesforce.com/services/oauth2/token'
+
+# Cache Config
+# SH_CACHE_CLASS: 'CDummyCache'
+SH_CACHE_CLASS: 'CMemCache'
+SH_CACHE_USE_MEMCACHED: true
+SH_CACHE_SERVER_HOST: 'memcached'
+SH_CACHE_SERVER_PORT: '11211'
+#SH_CACHE_KEY_PREFIX: 'graphiteCache'
+
+# Site Configs
+# SH_SITE_ADMIN_EMAIL: 'webmaster@sparehire.com'
+SH_SITE_ADMIN_EMAIL: 'jabreu@sparehire.com'
+SH_SITE_FROM_EMAIL: 'admin@sparehire.com'
+SH_SITE_HELP_EMAIL: 'help@sparehire.com'
+
+SH_SITE_FINANCIAL_REPORTING_EMAIL:
+  - 'joaohenriqueabreu@gmail.com'
+  - 'jabreu@sparehire.com'
+  - 'jabreu2@sparehire.com'
+
+# Account Manager Contact Info (optional, app has its own defaults)
+# SH_SITE_ACCT_MANAGER_NAME: '[acctManagerName]'
+# SH_SITE_ACCT_MANAGER_CALENDAR_URL: '[acctManagerCalendarUrl]'
+
+# Site Stripe Config
+SH_STRIPE_API_KEY: 'sk_test_8Reh6JummbsNTTbekYFMKTjz'
+SH_STRIPE_PUBLIC_API_KEY: 'pk_test_PfRkxdNN8UJ4j36ic3kse6Wk'
+# SH_STRIPE_API_VERSION: '[API_VERSION]'
+
+# Stripe Application Config
+SH_SITE_ENVIRONMENT: 'DEV'
+SH_SITE_ENCRYPT_INITIAL_VECTOR: 'staticIV'
+SH_SITE_ENCRYPT_PASSWORD: 'staticPassword'
+SH_SITE_ENCRYPTION_METHOD: 'aes-256-cbc'
+
+# Logging configuration
+SH_LOG_LEVEL: 'error, warning, info'
+
+# Log file config (optional, if omitted app logs to protected/runtime/application.log)
+# SH_LOG_FILE_PATH: '/var/log/sparehire'
+SH_LOG_FILE_PATH: '/var/log/graphite'
+
+# Site Payment Config
+SH_SITE_REQUIRE_PAYMENT_ON_MATCH: true
+
+# Site Email Relay Config
+SH_SITE_MESSAGE_RELAY_DOMAIN: 'example.sparehire.co'
+SH_SITE_OLD_MESSAGE_RELAY_DOMAIN: 'newexample.sparehire.com'
+
+# Site Customer IO Config
+SH_SITE_USE_CUSTOMER_IO_SITE_ID: '86c64f56a570a9e4c381'
+SH_SITE_USE_CUSTOMER_IO_API_KEY: '319137180da88c61dad3'
+
+# Site Linkedin Auto Fill Config
+SH_SITE_LI_AUTO_FILL: false
+
+# Allow sending application emails to actual recipients in test environment
+SH_SITE_SEND_MAILS_TO_RECIPIENTS_IN_TEST_MODE: false
+
+# Projects posted before cutoff date will not be auto expired or receive any expiry countdown emails
+SH_SITE_PROJECT_EXPIRY_CUTOFF_DATE: '2018-03-17'
+
+# Request Config
+SH_REQUEST_HOST_INFO: '[HOST]'
+SH_REQUEST_BASE_URL: ''
+SH_REQUEST_SCRIPT_URL: '/index.php'
+
+# Timezone Config
+SH_APP_TIMEZONE: 'America/New_York'
+
+SH_ASYNC_NETWORK_IP: 'php'
+SH_ASYNC_NETWORK_PORT: '9000'
+
+# Salesforce API Config
+SH_SITE_SF_API_ENABLED: true
+
+# GSSalesOps
+SH_SITE_SF_USERNAME: 'dvyas@sparehire.com.salesopsee'
+SH_SITE_SF_PASSWORD: 'Dav33yJon3s'
+SH_SITE_SF_CLIENT_ID: '3MVG99E3Ry5mh4zqNsp6HovAR3laujVSbxS9ZkfrnudQbNlXFQjDLrVEJMdPXndo43ylPfn1cM2rPkuuytL5l'
+SH_SITE_SF_CLIENT_SECRET: '1150087642916194996'
+SH_SITE_SF_GRANT_TYPE: 'password'
+SH_SITE_SF_LOGIN_URL: 'https://test.salesforce.com/services/oauth2/token'
+
+# Custom Salesforce Record Type Ids
+SH_SITE_SF_PRO_CONTACT_RECORD_TYPE_ID: '0120n000000CmorAAC'
+
+# Custom Salesforce Catch All Object Record Ids
+SH_SITE_SF_DUMMY_CONTACT_RECORD_ID: '0030n00000dyPMGAA2'
+SH_SITE_SF_DUMMY_PROJECT_RECORD_ID: 'a180n000000E9w2AAC'
+
+# Whether to allow sending non-user data to Salesforce (ex. projects, applications, payments)
+SH_SITE_SEND_ACTIVITY_DATA_TO_SF: true
+
+# SH_GOOGLE_RECAPTCHA_ENABLED: false
+# SH_GOOGLE_RECAPTCHA_SCORE_CHECK_ENABLED: false
+

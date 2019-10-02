@@ -38,26 +38,18 @@ services:
             - "${MYSQL_BLOG_MAPPED_PORT}:3306"
         networks:
             graphite_net:
-    php:
-        build: ./php  
-        container_name: "php"              
-        networks: 
-            graphite_net:            
-        volumes:
-            - ${GRAPHITE_FILES_DIR}:/var/www/files
-            - ${GRAPHITE_CODE}:/var/www/html
     apache:
         build: ./apache
         container_name: "apache"         
         ports:
-            - "${WEB_MAPPED_PORT}:80"                  
+            - "${WEB_MAPPED_PORT}:80"
         volumes:
-            - ${GRAPHITE_CODE}:/var/www/html      
+            - ${GRAPHITE_FILES_DIR}:/var/www/files
+            - ${GRAPHITE_CODE}:/var/www/html
         networks: 
             graphite_net:
         depends_on:
-            - mysql       
-            - php
+            - mysql
             - memcached      
 networks:
     graphite_net:
